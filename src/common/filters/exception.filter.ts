@@ -13,8 +13,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
       const validationErrors = (responseBody as any).message || ["Bad Request"];
 
       return response.status(status).json({
-        status: "fail",
         code: status,
+        status: "fail",
         message: validationErrors[0],
       });
     }
@@ -24,8 +24,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
       const message = exception.message;
 
       response.status(status).json({
-        status: "fail",
         code: status,
+        status: "fail",
         message,
       });
 

@@ -9,7 +9,7 @@ export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,
-  ) {}
+  ) { }
 
   async validateUser(email: string, pass: string) {
     const user = await this.usersService.findByEmail(email);
@@ -28,14 +28,14 @@ export class AuthService {
   }
 
   async login(user: {
+    id: string;
     email: string;
-    id: number;
   }) {
     const payload = { email: user.email, sub: user.id };
     return this.jwtService.sign(payload);
   }
 
-  async register(name:string, email: string, password: string) {
+  async register(name: string, email: string, password: string) {
     const isTaken = await this.usersService.isEmailTaken(email);
 
     if (isTaken) {
